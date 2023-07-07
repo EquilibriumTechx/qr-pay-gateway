@@ -10,7 +10,7 @@
  * Author URI: https://www.equilibrium.my
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: wc-tng-qr-pay
+ * Text Domain: wc-tng-gateway
  * Domain Path: /languages
  *
  * Copyright: c 2018-2022 Equilibrium Solution M Sdn. Bhd.
@@ -18,7 +18,7 @@
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package   WC_TNG_QR_PAY
+ * @package   WC-TNG-GATEWAY
  * @author    Equilibrium
  * @category  Admin
  * @copyright Copyright 2018-2022 Equilibrium Solution M Sdn. Bhd.
