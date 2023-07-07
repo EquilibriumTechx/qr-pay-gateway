@@ -326,7 +326,7 @@ function tng_checkout_field_display_admin_order_meta($order){
     echo '<p><strong>'.__( 'Mobile Number' ).':</strong> ' . $mobile . '</p>';
     echo '<p><strong>'.__( 'Transaction ID').':</strong> ' . $transaction . '</p>';
 }
-function uninstall_plugin( $plugin ) {
+function wc_tng_uninstall_plugin( $plugin ) {
 	$file = plugin_basename( $plugin );
 
 	$uninstallable_plugins = (array) get_option( 'uninstall_plugins' );
