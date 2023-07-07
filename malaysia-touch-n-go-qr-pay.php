@@ -18,7 +18,7 @@
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package   WC-TNG-GATEWAY
+ * @package   WC_TNG_GATEWAY
  * @author    Equilibrium
  * @category  Admin
  * @copyright Copyright 2018-2022 Equilibrium Solution M Sdn. Bhd.
