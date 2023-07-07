@@ -13,7 +13,6 @@ delete_option( 'tng_gateway_instructions' );
 delete_option( 'tng_gateway_media' );
 delete_option( 'woocommerce_tng_gateway_settings' );
 
-
 // Remove plugin meta data from orders
 $args = array(
 	'post_type'      => 'shop_order',
