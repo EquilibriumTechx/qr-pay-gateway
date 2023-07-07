@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Malaysian Touch N Go QR Pay
- * Plugin URI: https://www.equilibrium.my
+ * Plugin URI: https://www.equilibrium.my/malaysian-touch-n-go-qr-pay/
  * Description: Malaysian Touch N Go QR Pay
  * Version: 1.0.9
  * Requires at least: 5.2
