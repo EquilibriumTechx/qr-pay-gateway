@@ -10,6 +10,3 @@ delete_option( 'description' );
 delete_option( 'instructions' );
 delete_option( 'order_status' );
 delete_option( 'media' );
-
-// Call the renamed uninstall function
-wc_tng_uninstall_plugin( __FILE__ );
