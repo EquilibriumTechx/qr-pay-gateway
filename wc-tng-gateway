@@ -1,14 +1,19 @@
 <?php
-/**
+/*
  * Plugin Name: Malaysian Touch N Go QR Pay
+ * Plugin URI: https://www.equilibrium.my
  * Description: Malaysian Touch N Go QR Pay
- * Author: Equilibrium Solution (M) Sdn. Bhd.
+ * Version: 1.0.9
+ * Requires at least: 5.2
+ * Requires PHP: 7.2
+ * Author: Equilibrium Solution M Sdn. Bhd.
  * Author URI: https://www.equilibrium.my
- * Version: 1.0.8
+ * License: GPLv3
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wc-tng-qr-pay
  * Domain Path: /i18n/languages/
  *
- * Copyright: (c) 2018-2022 Equilibrium Solution (M) Sdn. Bhd.
+ * Copyright: c 2018-2022 Equilibrium Solution M Sdn. Bhd.
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,12 +21,12 @@
  * @package   WC_TNG_QR_PAY
  * @author    Equilibrium
  * @category  Admin
- * @copyright Copyright (c) 2018-2022 Equilibrium Solution (M) Sdn. Bhd.
+ * @copyright Copyright 2018-2022 Equilibrium Solution M Sdn. Bhd.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  *
  * This is a Malaysian Touch N Go Payment Qr Code.
  */
- 
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
