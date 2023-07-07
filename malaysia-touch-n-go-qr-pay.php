@@ -11,7 +11,7 @@
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wc-tng-qr-pay
- * Domain Path: /i18n/languages/
+ * Domain Path: /languages
  *
  * Copyright: c 2018-2022 Equilibrium Solution M Sdn. Bhd.
  *
