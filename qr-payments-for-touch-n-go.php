@@ -1,16 +1,16 @@
 <?php
 /*
- * Plugin Name: Malaysian Touch N Go QR Pay
- * Plugin URI: https://www.equilibrium.my/wc-tng-gateway/
- * Description: Malaysian Touch N Go QR Pay
- * Version: 1.0.9
- * Requires at least: 5.2
- * Requires PHP: 7.2
+ * Plugin Name: QR Payments for Touch 'n Go
+ * Plugin URI: https://www.equilibrium.my/qr-pay-gateway/
+ * Description: QR Payments for Touch 'n Go
+ * Version: 1.1.2
+ * Requires at least: 6.1
+ * Requires PHP: 8.0
  * Author: Equilibrium Solution M Sdn. Bhd.
  * Author URI: https://www.equilibrium.my
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: wc-tng-gateway
+ * Text Domain: qr-pay-gateway
  * Domain Path: /languages
  *
  * Copyright: c 2018-2022 Equilibrium Solution M Sdn. Bhd.
@@ -18,13 +18,13 @@
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package   WC_TNG_GATEWAY
+ * @package   QR_PAY_GATEWAY
  * @author    Equilibrium
  * @category  Admin
  * @copyright Copyright 2018-2022 Equilibrium Solution M Sdn. Bhd.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  *
- * This is a Malaysian Touch N Go Payment Qr Code.
+ * 
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -45,7 +45,7 @@ if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins',
  * @return array $gateways all WC gateways + offline gateway
  */
 function wc_tng_add_to_gateways( $gateways ) {
-	$gateways[] = 'WC_TNG_QR_PAY';
+	$gateways[] = 'WC_QR_PAY';
 	return $gateways;
 }
 add_filter( 'woocommerce_payment_gateways', 'wc_tng_add_to_gateways' );
@@ -58,15 +58,15 @@ add_filter( 'woocommerce_payment_gateways', 'wc_tng_add_to_gateways' );
  * @param array $links all plugin links
  * @return array $links all plugin links + our custom links (i.e., "Settings")
  */
-function wc_tng_gateway_plugin_links( $links ) {
+function QR_PAY_GATEWAY_plugin_links( $links ) {
 
 	$plugin_links = array(
-		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=tng_gateway' ) . '">' . __( 'Configure', 'wc-tng-gateway' ) . '</a>'
+		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=tng_gateway' ) . '">' . __( 'Configure', 'qr-pay-gateway' ) . '</a>'
 	);
 
 	return array_merge( $plugin_links, $links );
 }
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wc_tng_gateway_plugin_links' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'QR_PAY_GATEWAY_plugin_links' );
 
 
 /**
@@ -75,17 +75,17 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wc_tng_gatewa
  * Provides an Tng Payment Gateway;
  * We load it later to ensure WC is loaded first since we're extending it.
  *
- * @class 		WC_TNG_QR_PAY
+ * @class 		WC_QR_PAY
  * @extends		WC_Payment_Gateway
  * @version		1.0.8
  * @package		WooCommerce/Classes/Payment
  * @author 		Equilibrium
  */
-add_action( 'plugins_loaded', 'wc_tng_gateway_init', 11 );
+add_action( 'plugins_loaded', 'QR_PAY_GATEWAY_init', 11 );
 
-function wc_tng_gateway_init() {
+function QR_PAY_GATEWAY_init() {
 
-	class WC_TNG_QR_PAY extends WC_Payment_Gateway {
+	class WC_QR_PAY extends WC_Payment_Gateway {
 
 		/**
 		 * Constructor for the gateway.
@@ -95,9 +95,9 @@ function wc_tng_gateway_init() {
 			$this->id                 = 'tng_gateway';
 			$this->icon               = 'https://www.equilibrium.my/wp-content/uploads/2023/04/Touch_n_Go_eWallet_logo-e1681742544757.png';
 			$this->has_fields         = true;
-			$this->method_title       = __( 'Touch N Go', 'wc-tng-gateway' );
-			$this->title              = __( 'Touch N Go', 'wc-tng-gateway' );
-			$this->method_description = __( 'This is a Malaysia Touch N Go Qr Payment Method', 'wc-tng-gateway' );
+			$this->method_title       = __( 'Touch N Go', 'qr-pay-gateway' );
+			$this->title              = __( 'Touch N Go', 'qr-pay-gateway' );
+			$this->method_description = __( 'This is a Malaysia Touch N Go Qr Payment Method', 'qr-pay-gateway' );
 			$this->order_button_text = 'Pay via Touch N Go';
 			$this->supports = array(
                 'products',
@@ -138,48 +138,48 @@ function wc_tng_gateway_init() {
 			$this->form_fields = apply_filters( 'wc_tng_form_fields', array(
 		  
 				'enabled' => array(
-					'title'   => __( 'Enable/Disable', 'wc-tng-gateway' ),
+					'title'   => __( 'Enable/Disable', 'qr-pay-gateway' ),
 					'type'    => 'checkbox',
-					'label'   => __( 'Enable Touch N Go Payment method', 'wc-tng-gateway' ),
+					'label'   => __( 'Enable Touch N Go Payment method', 'qr-pay-gateway' ),
 					'default' => 'no'
 				),
 				
 				'title' => array(
-					'title'       => __( 'Title', 'wc-tng-gateway' ),
+					'title'       => __( 'Title', 'qr-pay-gateway' ),
 					'type'        => 'text',
-					'description' => __( 'This controls the title for the payment method the customer sees during checkout.', 'wc-tng-gateway' ),
-					'default'     => __( 'Touch N Go Payment mode', 'wc-tng-gateway' ),
+					'description' => __( 'This controls the title for the payment method the customer sees during checkout.', 'qr-pay-gateway' ),
+					'default'     => __( 'Touch N Go Payment mode', 'qr-pay-gateway' ),
 					'desc_tip'    => true,
 				),
 				'order_status' => array(
-                    'title'       => __( 'Order Status', 'wc-tng-gateway' ),
+                    'title'       => __( 'Order Status', 'qr-pay-gateway' ),
                     'type'        => 'select',
                     'class'       => 'wc-enhanced-select',
-                    'description' => __( 'Choose whether status you wish after checkout.', 'wc-tng-gateway' ),
+                    'description' => __( 'Choose whether status you wish after checkout.', 'qr-pay-gateway' ),
                     'default'     => 'wc-on-hold',
                     'desc_tip'    => true,
                     'options'     => wc_get_order_statuses()
                 ),
 				
 				'description' => array(
-					'title'       => __( 'Description', 'wc-tng-gateway' ),
+					'title'       => __( 'Description', 'qr-pay-gateway' ),
 					'type'        => 'textarea',
-					'description' => __( 'Payment method description that the customer will see on your checkout.', 'wc-tng-gateway' ),
-					'default'     => __( 'Please remit payment to Store Name upon pickup or delivery.', 'wc-tng-gateway' ),
+					'description' => __( 'Payment method description that the customer will see on your checkout.', 'qr-pay-gateway' ),
+					'default'     => __( 'Please remit payment to Store Name upon pickup or delivery.', 'qr-pay-gateway' ),
 					'desc_tip'    => true,
 				),
 				
 				'instructions' => array(
-					'title'       => __( 'Instructions', 'wc-tng-gateway' ),
+					'title'       => __( 'Instructions', 'qr-pay-gateway' ),
 					'type'        => 'textarea',
-					'description' => __( 'Instructions that will be added to the thank you page and emails.', 'wc-tng-gateway' ),
+					'description' => __( 'Instructions that will be added to the thank you page and emails.', 'qr-pay-gateway' ),
 					'default'     => '',
 					'desc_tip'    => true,
 				),
 				'media' => array(
-					'title'       => __( 'Media(URL)', 'wc-tng-gateway' ),
+					'title'       => __( 'Media(URL)', 'qr-pay-gateway' ),
 					'type'        => 'media',
-					'description' => __( 'Add an image URL related to this payment method.', 'wc-tng-gateway' ),
+					'description' => __( 'Add an image URL related to this payment method.', 'qr-pay-gateway' ),
 					'default'     => '',
 					'desc_tip'    => true,
 				),
@@ -230,15 +230,15 @@ function wc_tng_gateway_init() {
             ?>
             <div id="custom_input">
 				<p class="form-row form-row-wide">
-                    <label for="full_pay_name" class=""><?php _e('Payment Full Name', 'wc-tng-gateway'); ?></label>
+                    <label for="full_pay_name" class=""><?php _e('Payment Full Name', 'qr-pay-gateway'); ?></label>
                     <input type="text" class="" name="full_pay_name" id="full_pay_name" placeholder="" value="" required/>
                 </p>
                 <p class="form-row form-row-wide">
-                    <label for="mobile" class=""><?php _e('Mobile Number', 'wc-tng-gateway'); ?></label>
+                    <label for="mobile" class=""><?php _e('Mobile Number', 'qr-pay-gateway'); ?></label>
                     <input type="text" class="" name="mobile" id="mobile" placeholder="" value="" required/>
                 </p>
                 <p class="form-row form-row-wide">
-                    <label for="transaction" class=""><?php _e('Transaction ID', 'wc-tng-gateway'); ?></label>
+                    <label for="transaction" class=""><?php _e('Transaction ID', 'qr-pay-gateway'); ?></label>
                     <input type="text" class="" name="transaction" id="transaction" placeholder="" value="" required/>
                 </p>
             </div>
@@ -258,7 +258,7 @@ function wc_tng_gateway_init() {
             $status = 'wc-' === substr( $this->order_status, 0, 3 ) ? substr( $this->order_status, 3 ) : $this->order_status;
 
             // Set order status
-            $order->update_status( $status, __( 'Checkout with TNG payment. ', 'wc-tng-gateway' ) );
+            $order->update_status( $status, __( 'Checkout with TNG payment. ', 'qr-pay-gateway' ) );
 
             // Reduce stock levels
             $order->reduce_order_stock();
@@ -272,7 +272,7 @@ function wc_tng_gateway_init() {
                 'redirect'  => $this->get_return_url( $order )
             );
         }
-  } // end \WC_TNG_QR_PAY class
+  } // end \WC_QR_PAY class
 }
 
 add_action('woocommerce_checkout_process', 'tng_process_custom_payment');
