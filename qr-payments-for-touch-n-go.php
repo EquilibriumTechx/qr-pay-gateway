@@ -97,7 +97,7 @@ function QR_PAY_GATEWAY_init() {
 			$this->has_fields         = true;
 			$this->method_title       = __( 'Touch N Go', 'qr-pay-gateway' );
 			$this->title              = __( 'Touch N Go', 'qr-pay-gateway' );
-			$this->method_description = __( 'This is a Malaysia Touch N Go Qr Payment Method', 'qr-pay-gateway' );
+			$this->method_description = __( 'This is a QR Payment for Touch N Go', 'qr-pay-gateway' );
 			$this->order_button_text = 'Pay via Touch N Go';
 			$this->supports = array(
                 'products',
