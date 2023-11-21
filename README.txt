@@ -8,7 +8,7 @@
  - Requires PHP: 8.0
  - Requires WooCommerce at least: 8.2
  - Tested WooCommerce up to: 8.2.1
- - Stable Tag: 1.1.4
+ - Stable Tag: 1.1.5
  - License: GPLv3
  - License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,6 +40,9 @@ As for now this is a manual payment gateway, which user will required to update 
 
 == Changelog == 
 
+= 1.1.5 = 
+* removed not required functions
+
 = 1.1.4 = 
 * Change readme.md to readme.txt
 
@@ -60,5 +63,5 @@ As for now this is a manual payment gateway, which user will required to update 
 
 == Upgrade Notice ==
 
-= 1.1.4 = 
+= 1.1.5 = 
 Latest stable version
