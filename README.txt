@@ -3,12 +3,12 @@
  - Contributors: sureshramasamy
  - Donate link: https://www.equilibrium.my
  - Tags: woocommerce, payment gateway, gateway, manual payment
- - Requires at least: 6.3
- - Tested up to: 6.3.2
+ - Requires at least: 6.4
+ - Tested up to: 6.4.2
  - Requires PHP: 8.0
- - Requires WooCommerce at least: 8.2
- - Tested WooCommerce up to: 8.2.1
- - Stable Tag: 1.1.5
+ - Requires WooCommerce at least: 8.4
+ - Tested WooCommerce up to: 8.4.0
+ - Stable Tag: 1.1.6
  - License: GPLv3
  - License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,7 +25,9 @@ Please do take note that this plugin is a manual upload, no api to payment gatew
 2. You can:(1) upload the entire 'qr-pay-gateway' folder to the '/wp-content/plugins/' directory, 
 	   (2) upload the .zip file with the plugin Uploader under > Plugins > Add New > Upload
 3. Activate the plugin through the PLUGINS menu in WordPress
-4. Go to WooCommerce > Settings > Checkout and select "Qr Pay Gateway" to configure
+4. Go to WooCommerce > Settings > Payment and select "Qr Pay Gateway" to configure
+5. Visit our page for more details https://www.equilibrium.my/qr-pay-gateway/
+
 
 == Frequently Asked Questions ==
 = What is the text domain for translations? =
@@ -35,10 +37,20 @@ As for now this is a manual payment gateway, which user will required to update 
 
 == Screenshots ==
 
-1. screenshot-1.jpg. Screenshots are stored in the /assets/screenshot directory.
+1. screenshot-1.jpg
 2. screenshot-2.jpg
 
 == Changelog == 
+
+= 1.1.6 = 
+* Fixed Major: Restructure codes flow and layout for batter control & security and enhacement capabilities.
+* Fixed Minor: PHP Bug Fixes
+* Fixed Minor: Typo Fixes
+* Added New: Added Styling CSS File 
+* Added New: Added Script JS File 
+* Added New: Added QR Download Image
+* Added New: WooCommerce HPOS Compatible
+* Added New: Account holder name field
 
 = 1.1.5 = 
 * removed not required functions
@@ -63,5 +75,5 @@ As for now this is a manual payment gateway, which user will required to update 
 
 == Upgrade Notice ==
 
-= 1.1.5 = 
+= 1.1.6 = 
 Latest stable version

@@ -1,0 +1,91 @@
+.custom-payment-image {
+    width: 200px !important;
+    height: 200px !important;
+    /* margin-left: calc((355px - 200px) / 2) !important; keep in case container fails */
+    /* margin-right: auto !important; keep in case container fails */
+	border: 5px solid #000000 !important;
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+	max-height: 100% !important;
+}
+.custom-payment-input {
+    font-size: 20px !important;
+    color: #ffffff !important;
+	color: #121212;
+	text-shadow: -5px 6px 8px rgba(0, 0, 0, 0.4) !important;
+	padding-bottom: 10px;
+}
+.wc_payment_method.payment_method_qr_pay_gateway{
+	border-radius: 20px;
+	background-color: rgb(114, 73, 164) !important;
+	padding: 20px !important;
+	text-shadow: -5px 6px 8px rgba(0, 0, 0, 0.4) !important;
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+}
+.payment_method_qr_pay_gateway{
+	background-color: rgb(114, 73, 164) !important;
+	color: rgb(255, 255, 0) !important;
+}
+.payment_method_qr_pay_gateway div.payment_box::before{
+	border: 1em solid rgb(255, 255, 0) !important;
+	border-right-color: transparent !important;
+	border-left-color: transparent !important;
+	border-top-color: transparent !important;
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+}
+li.payment_method_qr_pay_gateway label img {
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+}
+li.payment_method_qr_pay_gateway label {
+    font-weight: 900 !important;
+	font-size: 20px !important;
+    color: rgb(255, 255, 255) !important;
+	text-shadow: -5px 6px 8px rgba(0, 0, 0, 0.4) !important;
+	padding-top:5px;
+}
+#custom_input .custom-pay-name-input, #custom_input .custom-mobile-number-input, #custom_input .custom-mobile-number-input{
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+	width: 100% !important;
+}
+.custom-payment-image-container{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.qr-image-download-button{
+	font-weight: 900;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 5px 20px 5px 20px;
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	border: 2px solid rgb(0, 0, 0);
+	width: auto;
+	border-radius: 5px;
+}
+.qr-image-download-button:hover{
+	color: rgb(255, 255, 0);
+	background-color: rgb(0, 0, 0);
+	border: 2px solid rgb(255, 255, 0);
+	border-radius: 5px;
+}
+
+#payment_method_qr_pay_gateway {
+    transform: scale(1.2); /* Adjust the scale factor as needed */
+	filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important;
+    -webkit-filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.4)) !important; /* Safari */
+}
+span.requiredqr {
+    color: red;
+	text-shadow: -5px 6px 8px rgba(0, 0, 0, 0.4) !important;
+}
+span.optionalqr{
+	font-size: 10px;
+	vertical-align: top;
+}

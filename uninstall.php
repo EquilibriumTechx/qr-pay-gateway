@@ -11,6 +11,7 @@ delete_option( 'qr_pay_gateway_order_status' );
 delete_option( 'qr_pay_gateway_description' );
 delete_option( 'qr_pay_gateway_instructions' );
 delete_option( 'qr_pay_gateway_media' );
+delete_option( 'qr_pay_gateway_account_name' );
 delete_option( 'qr_pay_gateway_qr_type_selector' );
 delete_option( 'woocommerce_qr_pay_gateway_settings' );
 
@@ -34,5 +35,6 @@ if ( $orders ) {
 		delete_post_meta( $order->ID, 'full_pay_name' );
 		delete_post_meta( $order->ID, 'mobile' );
 		delete_post_meta( $order->ID, 'transaction' );
+		delete_post_meta( $order->ID, 'transaction_type' );
 	}
 }
