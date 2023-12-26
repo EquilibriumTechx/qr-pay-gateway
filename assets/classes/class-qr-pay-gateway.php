@@ -90,6 +90,7 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                 $this->order_status = esc_html( $this->get_option( 'order_status', 'on-hold' ) );
                 $this->media        = esc_html( $this->get_option( 'media', '' ) );
 				$this->account_name            = esc_html( $this->get_option( 'account_name'));
+				$this->required_types          = esc_html( $this->get_option( 'required_types'));
                 $this->qr_type_selector        = esc_html( $this->get_option( 'qr_type_selector', 'option_1' ) );
             
                 // Actions
@@ -159,6 +160,7 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                         'default'     => '',
                         'desc_tip'    => true,
                     ),
+					
 					'account_name' => array(
                         'title'       => esc_html__( 'Account Name', 'qr-pay-gateway' ),
                         'type'        => 'text',
@@ -166,7 +168,16 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                         'default'     => esc_html__( 'ABC Sdn Bhd', 'qr-pay-gateway' ),
                         'desc_tip'    => true,
                     ),
-                    
+					
+					'required_types' => array(
+						'title'       => esc_html__( 'Required Transaction ID', 'qr-pay-gateway' ),
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Enable Required Transaction ID', 'qr-pay-gateway' ),
+						'description' => esc_html__( 'Enter the QR account holder\'s name', 'qr-pay-gateway' ),
+						'default'     => 'no',
+						'desc_tip'    => true,
+					),
+					
                     'qr_type_selector' => array(
                         'title'       => esc_html__( 'QR Payment Type', 'qr-pay-gateway' ),
                         'type'        => 'select',
@@ -273,10 +284,29 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                         <label for="mobile" class="custom-mobile-number"><?php esc_html_e('Mobile Number', 'qr-pay-gateway'); ?><span class="requiredqr">*</span></label>
                         <input type="text" class="custom-mobile-number-input" name="essb_mobile" id="essb_mobile" placeholder="+60-14-315-4949" value="" required/>
                     </p>
-                    <p class="form-row form-row-wide">
-                        <label for="transaction" class="custom-mobile-number"><?php esc_html_e('Transaction ID', 'qr-pay-gateway'); ?><span class="optionalqr"> (Optional)</span></label>
-                        <input type="text" class="custom-mobile-number-input" name="essb_transaction" id="essb_transaction" placeholder="ABCD1234567EFGH789" value=""/>
-                    </p>
+
+					
+					<?php
+						$required_types_cons = $this->get_option('required_types');
+				
+						if ($required_types_cons == 'yes') {
+							// If $required_types_cons is 'Yes'
+							?>
+							<p class="form-row form-row-wide">
+								<label for="transaction" class="custom-mobile-number"><?php esc_html_e('Transaction ID', 'qr-pay-gateway'); ?><span class="requiredqr">*</span></label>
+								<input type="text" class="custom-mobile-number-input" name="essb_transaction" id="essb_transaction" placeholder="ABCD1234567EFGH789" value=""/>
+							</p>
+							<?php
+						} else {
+							// If $required_types_cons is not 'Yes'
+							?>
+							<p class="form-row form-row-wide">
+								<label for="transaction" class="custom-mobile-number"><?php esc_html_e('Transaction ID', 'qr-pay-gateway'); ?><span class="optionalqr"> (Optional)</span></label>
+								<input type="text" class="custom-mobile-number-input" name="essb_transaction" id="essb_transaction" placeholder="ABCD1234567EFGH789" value=""/>
+							</p>
+							<?php
+						}
+					?>
 					<!-- Hidden input for transaction_type -->
 					<input type="hidden" name="essb_transaction_type" value="<?php echo esc_attr($qr_type_label); ?>"/>
                 </div>

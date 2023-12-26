@@ -34,10 +34,13 @@ function qr_pay_gateway_process_custom_payment()
             wc_add_notice(esc_html__('Please enter a valid mobile number. Only digits, plus, and dash are allowed.', 'qr-pay-gateway'), 'error');
         }
     }
-
-    // Check if Transaction ID is empty and trigger an error
-   /* if (!isset($_POST['essb_transaction']) || empty($_POST['essb_transaction'])) {
+	$this_class = new QrPayGateway();
+	$required_types_cons = $this_class->get_option('required_types');
+				
+	if ($required_types_cons == 'yes') {
+		if (!isset($_POST['essb_transaction']) || empty($_POST['essb_transaction'])) {
         wc_add_notice(esc_html__('Transaction ID is a required field.', 'qr-pay-gateway'), 'error');
-    } */
+    	}
+	} 
 }
 ?>

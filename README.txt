@@ -8,13 +8,16 @@
  - Requires PHP: 8.0
  - Requires WooCommerce at least: 8.4
  - Tested WooCommerce up to: 8.4.0
- - Stable Tag: 1.1.6
+ - Stable Tag: 1.1.7
  - License: GPLv3
  - License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 QR Payments For Woocommerce Payment Gateway For Touch N Go, DuitNow, Grab, Shopee Pay, Boost.
-Please do take note that this plugin is a manual upload, no api to payment gateway
+
+This plugin is compatible with WooCommerce HPOS 
+
+Please do take note that this plugin is a manual upload, no api to payment gateway, you are required to use your own QR code.
 
 = More Details =
 - For Support Kindly Email to support@equilibrium.my
@@ -39,11 +42,15 @@ As for now this is a manual payment gateway, which user will required to update 
 
 1. screenshot-1.jpg
 2. screenshot-2.jpg
+2. screenshot-3.jpg
 
 == Changelog == 
 
+= 1.1.7 = 
+* Added New: Required Transaction
+
 = 1.1.6 = 
-* Fixed Major: Restructure codes flow and layout for batter control & security and enhacement capabilities.
+* Fixed Major: Restructure codes flow and layout for batter control & security and enhancement capabilities.
 * Fixed Minor: PHP Bug Fixes
 * Fixed Minor: Typo Fixes
 * Added New: Added Styling CSS File 

@@ -2,8 +2,8 @@
 /*
  * Plugin Name: QR Payments Gateway
  * Plugin URI: https://www.equilibrium.my/qr-pay-gateway/
- * Description: QR Payments For Woocommerce Payment Gateway For Touch N Go, DuitNow, Grab, Shopee Pay, Boost, MaybankQR
- * Version: 1.1.6
+ * Description: QR Payments For Woocommerce Payment Gateway For Touch N Go, DuitNow, Grab, Shopee Pay, Boost
+ * Version: 1.1.7
  * Requires at least: 6.4
  * Requires PHP: 8.0
  * Author: Equilibrium Solution M Sdn. Bhd.

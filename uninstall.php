@@ -13,6 +13,7 @@ delete_option( 'qr_pay_gateway_instructions' );
 delete_option( 'qr_pay_gateway_media' );
 delete_option( 'qr_pay_gateway_account_name' );
 delete_option( 'qr_pay_gateway_qr_type_selector' );
+delete_option( 'qr_pay_gateway_qr_required_types' );
 delete_option( 'woocommerce_qr_pay_gateway_settings' );
 
 // Remove plugin meta data from orders
