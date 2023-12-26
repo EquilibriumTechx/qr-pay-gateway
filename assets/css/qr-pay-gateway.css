@@ -58,6 +58,9 @@ li.payment_method_qr_pay_gateway label {
 	align-items: center;
 	flex-direction: column;
 }
+.custom-payment-image-container h3{
+	color: rgb(255, 255, 0) !important;
+}
 .qr-image-download-button{
 	font-weight: 900;
 	margin-top: 10px;
