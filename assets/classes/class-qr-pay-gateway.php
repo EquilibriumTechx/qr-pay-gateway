@@ -56,7 +56,7 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                 $this->method_title       = esc_html__( 'QR Payment', 'qr-pay-gateway' );
                 $this->title              = esc_html__( 'QR Payment', 'qr-pay-gateway' );
                 $this->method_description = esc_html__( 'This is a QR Payment', 'qr-pay-gateway' );
-                $this->order_button_text  = esc_html( 'Pay via QR Pay', 'qr-pay-gateway' );
+                $this->order_button_text  = esc_html__( 'Pay via QR Pay', 'qr-pay-gateway' );
                 $this->supports = array(
 					'products', // Simple products
 					'subscriptions', // Subscriptions
@@ -84,13 +84,15 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                 $this->init_settings();
             
                 // Define user set variables
-                $this->title        = esc_html( $this->get_option( 'title' ) );
-                $this->description  = esc_html( $this->get_option( 'description' ) );
-                $this->instructions = esc_html( $this->get_option( 'instructions', $this->description ) );
-                $this->order_status = esc_html( $this->get_option( 'order_status', 'on-hold' ) );
-                $this->media        = esc_html( $this->get_option( 'media', '' ) );
-				$this->account_name            = esc_html( $this->get_option( 'account_name'));
-				$this->required_types          = esc_html( $this->get_option( 'required_types'));
+                $this->title                   = esc_html( $this->get_option( 'title' ) );
+                $this->description             = esc_html( $this->get_option( 'description' ) );
+                $this->instructions            = esc_html( $this->get_option( 'instructions', $this->description ) );
+                $this->order_status            = esc_html( $this->get_option( 'order_status', 'on-hold' ) );
+                $this->upload_qr               = esc_html( $this->get_option( 'upload_qr'));
+                $this->media                   = esc_html( $this->get_option( 'media', '' ) );
+                $this->preview_qr              = esc_html( $this->get_option( 'preview_qr'));
+                $this->account_name            = esc_html( $this->get_option( 'account_name'));
+                $this->required_types          = esc_html( $this->get_option( 'required_types'));
                 $this->qr_type_selector        = esc_html( $this->get_option( 'qr_type_selector', 'option_1' ) );
             
                 // Actions
@@ -153,13 +155,29 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                         'desc_tip'    => true,
                     ),
             
+                    'upload_qr' => array(
+						'title'       => esc_html__( 'Select (QR) Image', 'qr-pay-gateway' ),
+						'type'        => 'button',
+						'class'		  => 'qr_pay_upload_image_button button-secondary',
+						'label'		  => 'Select (QR) Image',		
+						'description' => esc_html__( 'Upload your QR Code image.', 'qr-pay-gateway' ),
+						'desc_tip'    => true,
+					),
+
                     'media' => array(
-                        'title'       => esc_html__( 'Media(URL)', 'qr-pay-gateway' ),
+                        'title'       => esc_html__( 'Media (URL)', 'qr-pay-gateway' ),
                         'type'        => 'media',
-                        'description' => esc_html__( 'Add an image URL related to this payment method.', 'qr-pay-gateway' ),
+                        'description' => esc_html__( 'Enter Path or use selector for automation', 'qr-pay-gateway' ),
                         'default'     => '',
+						'class'		  => 'qr_media_upload_url',
                         'desc_tip'    => true,
                     ),
+
+					'preview_qr' => array(
+						'title'       => '',
+						'type'        => 'hidden',
+						'class'		  => 'qr_pay_preview_qr',
+					),
 					
 					'account_name' => array(
                         'title'       => esc_html__( 'Account Name', 'qr-pay-gateway' ),
@@ -195,6 +213,65 @@ use Automattic\WooCommerce\Utilities\OrderUtil;
                     ),
                 ) );
             }
+
+            /**
+             * Upload Qr Code Button
+             */
+			public function generate_button_html( $key, $data ) {
+				$field    = $this->plugin_id . $this->id . '_' . $key;
+				$defaults = array(
+					'class'             => 'button-secondary',
+					'css'               => '',
+					'custom_attributes' => array(),
+					'desc_tip'          => false,
+					'description'       => '',
+					'title'             => '',
+				);
+
+				$data = wp_parse_args( $data, $defaults );
+
+				ob_start();
+				?>
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<label for="<?php echo esc_attr( $field ); ?>"><?php echo wp_kses_post( $data['title'] ); ?></label>
+						<?php echo $this->get_tooltip_html( $data ); ?>
+					</th>
+					<td class="forminp">
+						<fieldset>
+							<div class="upload_area woocommerce-qr-pay-gateway-upload-wrapper">
+								<span><?php echo __( 'Image Selector', 'qr-pay-gateway' ); ?></span>
+								<button class="<?php echo esc_attr( $data['class'] ); ?>" type="button" name="<?php echo esc_attr( $field ); ?>" id="<?php echo esc_attr( $field ); ?>" style="<?php echo esc_attr( $data['css'] ); ?>" <?php echo $this->get_custom_attribute_html( $data ); ?>><?php echo wp_kses_post( $data['title'] ); ?></button>
+							</div>
+						</fieldset>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<label for="<?php echo esc_attr( $field ); ?>"><?php echo __( 'QR Image Preview', 'qr-pay-gateway' ); ?></label>
+						<?php echo $this->get_tooltip_html( $data ); ?>
+					</th>
+					<td class="forminp qr-pay-preview-area">
+						<fieldset>
+							<div class="preview_area">
+								<?php
+								$options = get_option( 'woocommerce_qr_pay_gateway_settings' );
+								if( isset( $options['preview_qr'] ) && !empty( $options['preview_qr'] ) ){ ?>
+								<?php $media_path_url = $options['preview_qr'] ?>
+								
+									<img src="<?php echo $options['preview_qr'] ?>" class="upload_qr">
+									<button class="remove_qr button-secondary" type="button"><?php echo __( 'Delete (QR) Image', 'qr-pay-gateway' ); ?></button>
+								<?php echo $this->get_description_html( $data );
+								 }	?>
+							</div>
+						</fieldset>
+					</td>
+				</tr>
+				<?php
+				return ob_get_clean();
+			}
+
+
             /**
              * Output for the order received page.
              */

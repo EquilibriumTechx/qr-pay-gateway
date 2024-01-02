@@ -8,7 +8,7 @@
  - Requires PHP: 8.0
  - Requires WooCommerce at least: 8.4
  - Tested WooCommerce up to: 8.4.0
- - Stable Tag: 1.1.8
+ - Stable Tag: 1.1.9
  - License: GPLv3
  - License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,9 @@ As for now this is a manual payment gateway, which user will required to update 
 2. screenshot-3.jpg
 
 == Changelog == 
+
+= 1.1.9 =
+* Added New: Media Upload for Qr Code Image Selector.
 
 = 1.1.8 =
 * Fix: Typo Fix

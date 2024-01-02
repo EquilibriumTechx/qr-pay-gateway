@@ -3,7 +3,7 @@
  * Plugin Name: QR Payments Gateway
  * Plugin URI: https://www.equilibrium.my/qr-pay-gateway/
  * Description: QR Payments For Woocommerce Payment Gateway For Touch N Go, DuitNow, Grab, Shopee Pay, Boost
- * Version: 1.1.8
+ * Version: 1.1.9
  * Requires at least: 6.4
  * Requires PHP: 8.0
  * Author: Equilibrium Solution M Sdn. Bhd.
@@ -101,22 +101,82 @@ function qr_pay_gateway_activate() {
     // Example: Set default options, create database tables, etc.
     // Enqueue styles and scripts when the plugin is activated
     qr_pay_gateway_enqueue_assets();
+	admin_qr_pay_gateway_enqueue_assets();
 }
 
-// Function to enqueue styles and scripts
+// Function to enqueue styles and scripts - Front End - Dynamic Code file css,js 
 function qr_pay_gateway_enqueue_assets() {
     $plugin_path = plugin_dir_path(__FILE__);
+    $css_folder = $plugin_path . 'assets/css/';
+    $js_folder = $plugin_path . 'assets/js/';
 
-    // Get file modification time as the version number
-    $css_version = filemtime($plugin_path . 'assets/css/qr-pay-gateway.css');
-    $js_version = filemtime($plugin_path . 'assets/js/qr-pay-gateway.js');
+    // Get file modification time as the version number for CSS
+    $css_files = glob($css_folder . '*.css');
+    foreach ($css_files as $css_file) {
+        $css_version = filemtime($css_file);
+        wp_enqueue_style(
+            'qr-pay-gateway-' . basename($css_file, '.css'),
+            plugin_dir_url(__FILE__) . 'assets/css/' . basename($css_file),
+            array(),
+            $css_version,
+            'all'
+        );
+    }
 
-    // Enqueue CSS
-    wp_enqueue_style('qr-pay-gateway', plugin_dir_url(__FILE__) . 'assets/css/qr-pay-gateway.css', array(), $css_version, 'all');
-
-    // Enqueue JS
-    wp_enqueue_script('qr-pay-gateway', plugin_dir_url(__FILE__) . 'assets/js/qr-pay-gateway.js', array('jquery'), $js_version, true);
+    // Get file modification time as the version number for JS
+    $js_files = glob($js_folder . '*.js');
+    foreach ($js_files as $js_file) {
+        $js_version = filemtime($js_file);
+        wp_enqueue_script(
+            'qr-pay-gateway-' . basename($js_file, '.js'),
+            plugin_dir_url(__FILE__) . 'assets/js/' . basename($js_file),
+            array('jquery'),
+            $js_version,
+            true
+        );
+    }
 }
 
-// Enqueue styles and scripts on every page load (not just during activation)
+// Function to enqueue styles and scripts - Back End  - Dynamic Code file css,js 
 add_action('wp_enqueue_scripts', 'qr_pay_gateway_enqueue_assets');
+
+// Function to enqueue styles and scripts - admin
+function admin_qr_pay_gateway_enqueue_assets() {
+    $plugin_path = plugin_dir_path(__FILE__);
+    $css_folder = $plugin_path . 'assets/admin/css/';
+    $js_folder = $plugin_path . 'assets/admin/js/';
+
+    // Enqueue media if not already enqueued
+    if (!did_action('wp_enqueue_media')) {
+        wp_enqueue_media();
+    }
+
+    // Enqueue CSS files from the folder
+    $css_files = glob($css_folder . '*.css');
+    foreach ($css_files as $css_file) {
+        $css_version = filemtime($css_file);
+        wp_enqueue_style(
+            'qr-pay-gateway-' . basename($css_file, '.css'),
+            plugin_dir_url(__FILE__) . 'assets/admin/css/' . basename($css_file),
+            array(),
+            $css_version,
+            'all'
+        );
+    }
+
+    // Enqueue JS files from the folder
+    $js_files = glob($js_folder . '*.js');
+    foreach ($js_files as $js_file) {
+        $js_version = filemtime($js_file);
+        wp_enqueue_script(
+            'qr-pay-gateway-' . basename($js_file, '.js'),
+            plugin_dir_url(__FILE__) . 'assets/admin/js/' . basename($js_file),
+            array('jquery'),
+            $js_version,
+            true
+        );
+    }
+}
+
+// Enqueue styles and scripts in the admin area
+add_action('admin_enqueue_scripts', 'admin_qr_pay_gateway_enqueue_assets');

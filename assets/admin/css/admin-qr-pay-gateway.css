@@ -1,0 +1,35 @@
+.woocommerce-qr-pay-gateway-upload-wrapper {
+	padding: 34px;
+	border: 2px dotted rgb(114, 73, 164);
+	width: 150px;
+}
+
+.woocommerce-qr-pay-gateway-upload-wrapper span {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 15px;
+	display: inline-block;
+}
+
+.wp-core-ui .woocommerce-qr-pay-gateway-upload-wrapper button.button-secondary {
+	display: block;
+	margin-top: 20px;
+	margin: 0 auto;
+}
+
+.qr-pay-preview-area .preview_area {
+	text-align: center;
+    width: 220px;
+}
+
+.qr-pay-preview-area .preview_area .upload_qr{
+	display: block;
+    padding: 5px;
+    width: 200px;
+    border: 2px dotted rgb(114, 73, 164);
+    margin-bottom: 10px;
+}
+.qr_media_upload_url{
+	 width: 100% !important;
+}

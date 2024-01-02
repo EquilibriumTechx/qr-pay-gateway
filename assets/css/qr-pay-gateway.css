@@ -9,6 +9,7 @@
 	max-height: 100% !important;
 }
 .custom-payment-input {
+	font-weight: 900 !important;
     font-size: 20px !important;
     color: #ffffff !important;
 	color: #121212;
@@ -60,21 +61,24 @@ li.payment_method_qr_pay_gateway label {
 }
 .custom-payment-image-container h3{
 	color: rgb(255, 255, 0) !important;
+	font-weight: 900 !important;
+	font-size: 20px !important;
 }
 .qr-image-download-button{
-	font-weight: 900;
+	font-weight: 900 !important;
+	font-size: 15px !important;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 5px 20px 5px 20px;
-	color: rgb(0, 0, 0);
-	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0) !important;
+	background-color: rgb(255, 255, 255) !important;
 	border: 2px solid rgb(0, 0, 0);
 	width: auto;
 	border-radius: 5px;
 }
 .qr-image-download-button:hover{
-	color: rgb(255, 255, 0);
-	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 0) !important;
+	background-color: rgb(0, 0, 0) !important;
 	border: 2px solid rgb(255, 255, 0);
 	border-radius: 5px;
 }
